@@ -1,7 +1,7 @@
 'use client';
 import ErrorMessage from '@/app/components/ErrorMessage';
 import Spinner from '@/app/components/Spinner';
-import { createIssuesSchema } from '@/app/validationSchemas';
+import { issueSchema } from '@/app/validationSchemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Issue } from '@prisma/client';
 import { Button, Callout, TextField } from '@radix-ui/themes';
@@ -21,7 +21,7 @@ interface Props {
 	issue?: Issue;
 }
 
-type IssueFormData = z.infer<typeof createIssuesSchema>;
+type IssueFormData = z.infer<typeof issueSchema>;
 const IssueForm = ({ issue }: Props) => {
 	const [error, setError] = useState('');
 	const router = useRouter();
@@ -32,7 +32,7 @@ const IssueForm = ({ issue }: Props) => {
 		handleSubmit,
 		formState: { errors },
 	} = useForm<IssueFormData>({
-		resolver: zodResolver(createIssuesSchema),
+		resolver: zodResolver(issueSchema),
 	});
 	const onSubmit = async (data: IssueFormData) => {
 		try {
