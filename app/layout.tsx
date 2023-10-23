@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NavBar from './NavBar';
 import { Container, Theme } from '@radix-ui/themes';
+import AuthProvider from './auth/Provider';
 
 // TODO: Fix font
 const inter = Inter({
@@ -25,14 +26,16 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.variable}>
-				<Theme accentColor="violet" radius="large" scaling="110%">
-					<NavBar />
-					<main className="p-5">
-						<Container>{children}</Container>
-					</main>
-				</Theme>
-			</body>
+			<AuthProvider>
+				<body className={inter.variable}>
+					<Theme accentColor="violet" radius="large" scaling="110%">
+						<NavBar />
+						<main className="p-5">
+							<Container>{children}</Container>
+						</main>
+					</Theme>
+				</body>
+			</AuthProvider>
 		</html>
 	);
 }
