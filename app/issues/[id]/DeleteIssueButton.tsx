@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { set } from 'zod';
-import { Spinner } from '../components';
+import { Spinner } from '../../components';
 
 const DeleteIssueButton = ({ issueId }: { issueId: number }) => {
 	const router = useRouter();
